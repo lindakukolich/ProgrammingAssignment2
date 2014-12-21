@@ -131,30 +131,3 @@ cacheSolve <- function(x, ...) {
 ## cacheSolve with a non-square matrix
 ##    Solve throws an error when it fails
 ##    Multiple times for multiple calls
-
-## call cacheSolve with an atomic
-## Error: $ operator is invalid for atomic vectors
-## call cacheSolve with a list, but not a cacheMatrix
-## Error attempt to apply non-function
-## call cacheSolve with a list, with the same methods as cacheMatrix has, but different ones
-## fx <- makeFakeCache(c(1,3,4))
-## cacheSolve(fx)
-## a (3 x 1) must be square
-# so, it is "easy" to use the wrong types together. How do I do stronger typing?
-
-makeFakeCache <- function(x = vector()) {
-  inverse <- NULL
-  set <- function(y) {
-    x <<- 2*y
-    inverse <<- NULL
-  }
-  ## return the stored matrix
-  get <- function() 3*x
-  setinverse <- function( i ) inverse <<- 2*i
-  getinverse <- function() inverse
-  ## return the object we have constructed, actually a list of methods
-  list(set = set, 
-       get = get, 
-       setinverse = setinverse, 
-       getinverse = getinverse)
-}
